@@ -4,18 +4,20 @@ import shogi
 
 board = shogi.Board()
 
-def check_move(move):
-    legal_moves = list(board.legal_moves)
-    if move in legal_moves:
-        return move
-    else:
-        print("Esses são os movimentos possiveis:", legal_moves)
-        input("Movimento inválido, por favor digite novamente: ")
-        return move
 
-def move_piece(move):
-    check_move(move)
-    board.push_usi(move)
+def move_piece(board):
+    while True:  # Continua até que um movimento válido seja feito
+        print("Movimentos legais possíveis:", [move.usi() for move in board.legal_moves])
+        move_str = input("Por favor, digite seu movimento (formato USI): ")
+        try:
+            if any(move_str == move.usi() for move in board.legal_moves):
+                board.push_usi(move_str)
+                break
+            else:
+                print("Moviemento invalido tente novamente")
+        except ValueError:
+            print("Formato de movimento inválido. Por favor, use o formato USI e tente novamente.")
+
 
 #  Pontuação das peças de acordo com a posição
 
@@ -103,7 +105,7 @@ torre_value = [
     0, 0, 0, 5, 5, 0, 0, 0, 0
 ]
 
-# Para o rei, vamos garantir a segurança melhorando as posições defensivas
+# Para o rei, garantir a segurança melhorando as posições defensivas
 rei_value = [
     20, 30, 40, 50, 50, 40, 30, 20, 10,
     20, 30, 40, 50, 50, 40, 30, 20, 10,
@@ -339,13 +341,23 @@ def selectmove(depth):
         return bestMove
 
 
+def random_move(board):
+    legal_moves = list(board.legal_moves)
+    if legal_moves:  # Verifica se há movimentos legais disponíveis
+        return random.choice(legal_moves)
+    else:
+        return None 
 
 while not board.is_game_over():
     if board.turn:
-        move = selectmove(3)
-        board.push(move)
+        # Funcao para jogar contra a IA
+        # move_piece(board)
+
+        # Funcao que joga movimentos aleatorios
+        board.push(random_move(board))
         print(board)
     else:
+        # IA Jogando
         move = selectmove(3)
         board.push(move)
         print(board)
