@@ -3,7 +3,9 @@ Necessario instalar a biblioteca python-shogi:
 
 pip install python-shogi
 
-Usar a funcao move_piece(board) para jogar contra a ia
+Usar a funcao move_piece(board) para jogar contra a ia:
+
+
 
 while not board.is_game_over():
     if board.turn:
