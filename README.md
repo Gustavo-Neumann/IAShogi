@@ -1,3 +1,4 @@
 # IAShogi
-Necessario instalar a biblioteca python-shogi
+Necessario instalar a biblioteca python-shogi:
+
 pip install python-shogi
