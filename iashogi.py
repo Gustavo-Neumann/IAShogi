@@ -1,6 +1,8 @@
 import random
 import shogi
 
+# refatorar o codigo mudar o nome pra main.py
+
 
 board = shogi.Board()
 
@@ -119,9 +121,6 @@ rei_value = [
 ]
 
 
-
-
-
 def avalia_board():
     if board.is_checkmate():
         if board.turn:
@@ -199,9 +198,9 @@ def avalia_board():
        
 
 
-#    Calculo Material:
-# - Pra cada uma das peças, pega o valor da posição que ela se encontra e cruza com a tabela de peças
-# - No mesmo calculo ele usa mirror para calcular o valor referente as peças pretas (square mirror)
+# Calculo Material:
+# Pra cada uma das peças, pega o valor da posição que ela se encontra e cruza com a tabela de peças
+# No mesmo calculo ele usa mirror para calcular o valor referente as peças pretas (square mirror)
 
 # Valor total é o valor material mais o valor de numero de peças
 # negativo (adversario)
@@ -348,29 +347,29 @@ def random_move(board):
     else:
         return None 
 
-while not board.is_game_over():
-    if board.turn:
-        # Funcao para jogar contra a IA
-        # move_piece(board)
+# while not board.is_game_over():
+#     if board.turn:
+#         # Funcao para jogar contra a IA
+#         # move_piece(board)
 
-        # Funcao que joga movimentos aleatorios
-        board.push(random_move(board))
-        print(board)
-    else:
-        # IA Jogando
-        move = selectmove(3)
-        board.push(move)
-        print(board)
+#         # Funcao que joga movimentos aleatorios
+#         board.push(random_move(board))
+#         print(board)
+#     else:
+#         # IA Jogando
+#         move = selectmove(3)
+#         board.push(move) 
+#         print(board)
         
 
-board
+# board
 
-if board.is_checkmate():
-    if board.turn == shogi.BLACK:
-        print("Branco venceu por cheque-mate!")
-    else:
-        print("Preto venceu por cheque-mate!")
-elif board.is_fourfold_repetition():
-    print("Empate por repetição quádrupla.")
+# if board.is_checkmate():
+#     if board.turn == shogi.BLACK:
+#         print("Branco venceu por cheque-mate!")
+#     else:
+#         print("Preto venceu por cheque-mate!")
+# elif board.is_fourfold_repetition():
+#     print("Empate por repetição quádrupla.")
 
-board.reset()
+# board.reset()
