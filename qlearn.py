@@ -150,7 +150,7 @@ def menu():
         print("3. Q learn contra Minimax")
         print("4. Sair")
         
-        choice = input("Digite sua escolha (1/2/3): ")
+        choice = input("Digite sua escolha (1/2/3/4): ")
         
         if choice == '1':
             train()

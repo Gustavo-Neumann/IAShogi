@@ -1,9 +1,6 @@
 import random
 import shogi
 
-# refatorar o codigo mudar o nome pra main.py
-
-
 board = shogi.Board()
 
 
@@ -132,7 +129,6 @@ def avalia_board():
 
 
 # '''Número de peças que estão no tabuleiro
-# - número de peao branco, peao preto, torre branca, torre preta
 # - utilizado pra fazer o calculo material da diferença de peças suas e do adversario
 
 
@@ -255,13 +251,6 @@ def avalia_board():
         return -avaliacao
     
 
-# ALPHABETA
-# Auxilia em diminuir os calculos de profundidade, ao invés de calcular a arvore interira ele vai até o que ja é melhor
-# É a utilizada para o calculo das possibilidade, nível a nível
-# Se chegou no fim da profundidade parametrizada, apenas calcula quisce
-# se não chegou no final, apronfunda e calcula
-# Se em um dos movimentos simulados alcançou uma pontuação maior que beta (que já é o do adversario), finaliza o calculo e retorna esse movimento que ganha
-# Se é maior que o alpha ja armazenado, guarda e segue os procimos calculos
 
 def alphabeta(alpha, beta, depthleft):
     bestscore = -9999
@@ -279,11 +268,6 @@ def alphabeta(alpha, beta, depthleft):
             alpha = score
     return bestscore
 
-# QUIESCE
-# Pontuação do tabuleiro
-# se for maior que o beta retorna beta (finaliza)
-# Maior que o alpha, armazena na pontuação do tabuleiro
-# Além disso vai calcular se a posição final tem uma captura de peça, se houver ele deverá fazer a simulaçã desse movimento e não deve finalizar os calculos antes disso
 
 # Ao fim retorna Alpha
 def is_capture(board, move):
@@ -313,13 +297,6 @@ def quiesce( alpha, beta ):
                 alpha = score
     return alpha
 
-# '''SelectMove (vai escolher o movimento baseado nas possibilidades de alphabeta)
-# depth é a profundidade
-# Não fará nada a principio e checará os movimentos possíveis
-# Ele ira simular as jogadas e calcular o valor encontrado, cada vez que ele encontrar um movimento com valor superior ao movimento anterior, ele irá armazenar
-# bestValue > bestMove > move
-# Se o valor for melhor que o alpha (que é o valor inicial da jogada) armazena em alpha por enquanto
-# No fim com um pop ele desfaz o movimento e recalcula o proximo (sempre armazenando os melhores vaore/movimentos)'''
 
 def selectmove(depth):
         movehistory =[]
