@@ -18,6 +18,8 @@ minimax_probability = 0.0  # Probability of using Minimax
 Q = defaultdict(float)
 board = shogi.Board()
 
+
+# Essas funções escolhem ações usando uma política epsilon-greedy e atualizam a Q-Table com base nas recompensas recebidas.
 # Function to choose an action based on the epsilon-greedy policy and Minimax
 def choose_action(state, legal_moves):
     if np.random.rand() < epsilon:
@@ -38,6 +40,7 @@ def update_q_table(state, action, reward, next_state, done):
     new_q = current_q + alpha * (reward + gamma * max_future_q * (1 - done) - current_q)
     Q[(state, action)] = new_q
 
+# Essas funções lidam com a persistência da Q-Table, salvando e carregando o estado da tabela em um arquivo comprimido.
 # Function to save Q-Table in binary format
 def save_q_table(filename):
     with open(filename, 'wb') as f:
@@ -63,6 +66,7 @@ def create_q_table_if_not_exists(filename):
 # Initialize Q-Table
 create_q_table_if_not_exists('q_table.pkl')
 
+# O treinamento envolve a execução de múltiplos episódios, enquanto a função de jogo permite ao usuário jogar contra o agente treinado.
 # Training loop
 def train():
     print("Treinando o modelo")

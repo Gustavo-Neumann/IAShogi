@@ -191,28 +191,15 @@ def avalia_board():
                 torre_preta += 1
             elif piece == shogi.KING:
                 rei_preto += 1
-       
 
-
-# Calculo Material:
-# Pra cada uma das peças, pega o valor da posição que ela se encontra e cruza com a tabela de peças
-# No mesmo calculo ele usa mirror para calcular o valor referente as peças pretas (square mirror)
-
-# Valor total é o valor material mais o valor de numero de peças
-# negativo (adversario)
-# Positivo (voce)
-
-# Min Max:
-# Minima chance de perder (quando calcula as suas jogadas baseadas na do adversario)
-# Maxima chance de ganhar (baseado nas suas jogadas para ganhar)'''
 # 1 Rei
-#1 Torre
-#1 Bispo
-#2 Generais de Ouro
-#2 Generais de Prata
-#2 Cavalos
-#2 Lanças
-#9 Peões
+# 1 Torre
+# 1 Bispo
+# 2 Generais de Ouro
+# 2 Generais de Prata
+# 2 Cavalos
+# 2 Lanças
+# 9 Peões
     material = 100 * (peao_branco - peao_preto) + 850 * (bispo_branco - bispo_preto) + 950 * (torre_branca - torre_preta) + 550 * (general_ouro_branco - general_ouro_preto) + 450 * (general_prata_branco - general_prata_preto) + 320 * (cavalo_branco - cavalo_preto) + 300 * (lanca_branca - lanca_preta)
 
 
@@ -250,8 +237,6 @@ def avalia_board():
     else:
         return -avaliacao
     
-
-
 def alphabeta(alpha, beta, depthleft):
     bestscore = -9999
     if (depthleft == 0):
@@ -268,13 +253,8 @@ def alphabeta(alpha, beta, depthleft):
             alpha = score
     return bestscore
 
-
-# Ao fim retorna Alpha
 def is_capture(board, move):
-    # Obtém a peça na posição de destino do movimento
     piece_at_destination = board.piece_at(move.to_square)
-
-    # Verifica se há uma peça na posição de destino e se ela pertence ao adversário
     return piece_at_destination is not None and piece_at_destination.color != board.turn
 
 
